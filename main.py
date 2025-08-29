@@ -44,7 +44,7 @@ Return **only valid JSON** (no extra text) with keys:
   - script: the lesson text (3-6 short sentences)
   - quiz: an array of 3 objects each with keys: question, options (array of 4 strings), answer (exact match of correct option)
 Example:
-{{"title":"...","script":"...","quiz":[{{"question":"...","options":["A","B","C","D"],"answer":"B"} , ... ]}}
+{{"title":"...","script":"...","quiz":[{{"question":"...","options":["A","B","C","D"],"answer":"B" , ... ]}}
 Make sure JSON is parseable.
 """
     headers = {"Authorization": f"Bearer {HUGGINGFACE_API_KEY}", "Accept": "application/json"}
