@@ -10,6 +10,20 @@ from pydantic import BaseModel
 import requests
 from gtts import gTTS
 from supabase import create_client, Client
+import sys
+
+# DEBUG: Check all environment variables
+print("=== ENVIRONMENT VARIABLES ===")
+for key in ['HUGGINGFACE_API_KEY', 'SUPABASE_URL', 'SUPABASE_SERVICE_KEY']:
+    value = os.environ.get(key)
+    print(f"{key}: {'SET' if value else 'MISSING'}")
+    if value:
+        print(f"   Value: {value[:10]}...")  # Show first 10 chars only
+
+# Exit if missing critical variables
+if not all([os.environ.get('HUGGINGFACE_API_KEY'), os.environ.get('SUPABASE_URL'), os.environ.get('SUPABASE_SERVICE_KEY')]):
+    print("ERROR: Missing required environment variables!")
+    sys.exit(1)
 
 # --- Config from env ---
 HUGGINGFACE_API_KEY = os.environ.get("HUGGINGFACE_API_KEY")
