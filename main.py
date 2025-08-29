@@ -25,6 +25,37 @@ if not all([os.environ.get('HUGGINGFACE_API_KEY'), os.environ.get('SUPABASE_URL'
     print("ERROR: Missing required environment variables!")
     sys.exit(1)
 
+# Continue with more debugging...
+print("=== CONTINUING DEBUG ===")
+try:
+    # Your existing imports
+    from fastapi import FastAPI, HTTPException
+    from pydantic import BaseModel
+    import requests
+    from gtts import gTTS
+    from supabase import create_client, Client
+    print("✅ All imports successful")
+    
+    # Test Supabase connection
+    supabase = create_client(os.environ['SUPABASE_URL'], os.environ['SUPABASE_SERVICE_KEY'])
+    print("✅ Supabase client created")
+    
+    # Test HuggingFace connection
+    headers = {"Authorization": f"Bearer {os.environ['HUGGINGFACE_API_KEY']}"}
+    print("✅ HuggingFace auth setup")
+    
+    print("✅ All setup complete - starting FastAPI app...")
+    
+except Exception as e:
+    print(f"❌ ERROR during setup: {str(e)}")
+    import traceback
+    traceback.print_exc()
+    sys.exit(1)
+
+# Your existing FastAPI app code continues...
+app = FastAPI(title="Free AI Video Generator (FFmpeg + gTTS + HF)")
+# ... rest of your code
+
 # --- Config from env ---
 HUGGINGFACE_API_KEY = os.environ.get("HUGGINGFACE_API_KEY")
 HUGGINGFACE_MODEL = os.environ.get("HUGGINGFACE_MODEL", "google/flan-t5-large")  # change if you prefer
